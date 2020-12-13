@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thender/widgets/category_selector.dart';
-import 'package:thender/widgets/category_selector_display.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: "Thender",
       theme: ThemeData(
         primaryColor: Color(0xff14213d),
-        accentColor:  Color(0xffe5e5e5),
+        accentColor: Color(0xffe5e5e5),
       ),
       home: HomeScreen(),
     );
@@ -33,6 +32,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: iconBackgroundColour,
         shadowColor: textAndIconColour,
+        centerTitle: true,
         title: Text(
           'Thender',
           style: TextStyle(
@@ -41,14 +41,13 @@ class HomeScreen extends StatelessWidget {
             color: textAndIconColour,
           ),
         ),
-        centerTitle: true,
         elevation: 0.0,
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(15.0),
         child: FloatingActionButton(
           elevation: 10.0,
-          backgroundColor:iconBackgroundColour,
+          backgroundColor: iconBackgroundColour,
           splashColor: textAndIconColour,
           child: Icon(
             Icons.share,
@@ -62,11 +61,11 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: Column(
-        children: [
-          CategorySelector(), // CATEGORIES LIST.
-          CategorySelectorDisplay(), // SCREEN FOR EACH MEMBER OF THE LIST.
-        ],
+      body: SizedBox.expand(
+        child: Container(
+          color: iconBackgroundColour,
+          child: CategorySelector(),
+        ),
       ),
     );
   }
