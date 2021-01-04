@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  photo_manager: ^0.5.8
+  video_player: ^0.11.1+2
   flutter:
     sdk: flutter
 
