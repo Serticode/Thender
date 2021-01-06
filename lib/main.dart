@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thender/widgets/category_selector.dart';
+import 'package:thender/widgets/share_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Thender",
       theme: ThemeData(
         primaryColor: Color(0xff14213d),
-        accentColor: Color(0xffe5e5e5),
+        accentColor: Color(0xff14213d), //Color(0xffe5e5e5),
       ),
       home: HomeScreen(),
     );
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
           'Thender',
           style: TextStyle(
             fontSize: 30.0,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
             color: textAndIconColour,
           ),
         ),
@@ -56,6 +57,14 @@ class HomeScreen extends StatelessWidget {
           ),
           tooltip: "Connect ?",
           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) {
+                  return ShareHomePage();
+                },
+              ),
+            );
             debugPrint("Floating Action Button Pressed.");
           },
         ),

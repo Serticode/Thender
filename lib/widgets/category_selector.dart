@@ -101,15 +101,35 @@ class _CategorySelectorState extends State<CategorySelector> {
     return listView;
   }
 
+  Widget getSongs() {
+    var songsList = getMusicView();
+    return songsList;
+  }
+
   Widget getMusicView() {
+    //List<Song> _songs;
     var listItems = getListElements();
+    //var songs = await MusicFinder.allSongs();
+    //songs = new List.from(songs);
+
+    /* setState(() {
+      _songs = songs;
+    }); */
 
     var listView = ListView.builder(itemBuilder: (context, index) {
       return ListTile(
-        leading: Icon(Icons.add),
+        leading: CircleAvatar(
+          child: Icon(Icons.play_arrow),
+          radius: 25.0,
+          backgroundColor: HomeScreen().iconBackgroundColour,
+          foregroundColor: HomeScreen().textAndIconColour,
+        ),
         title: Text(listItems[index]),
         subtitle: Text("Random Place Holder: Music"),
-        trailing: Icon(Icons.delete),
+        trailing: Icon(
+          Icons.delete,
+          color: HomeScreen().iconBackgroundColour,
+        ),
       );
     });
     return listView;
@@ -120,10 +140,18 @@ class _CategorySelectorState extends State<CategorySelector> {
 
     var listView = ListView.builder(itemBuilder: (context, index) {
       return ListTile(
-        leading: Icon(Icons.add),
+        leading: CircleAvatar(
+          child: Icon(Icons.file_copy_rounded),
+          radius: 25.0,
+          backgroundColor: HomeScreen().iconBackgroundColour,
+          foregroundColor: HomeScreen().textAndIconColour,
+        ),
         title: Text(listItems[index]),
         subtitle: Text("Random Place Holder: Files"),
-        trailing: Icon(Icons.delete),
+        trailing: Icon(
+          Icons.delete,
+          color: HomeScreen().iconBackgroundColour,
+        ),
       );
     });
     return listView;
@@ -134,10 +162,18 @@ class _CategorySelectorState extends State<CategorySelector> {
 
     var listView = ListView.builder(itemBuilder: (context, index) {
       return ListTile(
-        leading: Icon(Icons.add),
+        leading: CircleAvatar(
+          child: Icon(Icons.apps_sharp),
+          radius: 25.0,
+          backgroundColor: HomeScreen().iconBackgroundColour,
+          foregroundColor: HomeScreen().textAndIconColour,
+        ),
         title: Text(listItems[index]),
         subtitle: Text("Random Place Holder: Apps"),
-        trailing: Icon(Icons.delete),
+        trailing: Icon(
+          Icons.delete,
+          color: HomeScreen().iconBackgroundColour,
+        ),
       );
     });
     return listView;
@@ -243,11 +279,11 @@ class AssetThumbnail extends StatelessWidget {
               if (asset.type == AssetType.video)
                 Center(
                   child: Container(
-                    color: HomeScreen().iconBackgroundColour,
+                    color: Colors.white,
                     child: Icon(
                       Icons.play_arrow,
-                      color: HomeScreen().textAndIconColour,
-                      size: 30.0,
+                      color: HomeScreen().iconBackgroundColour,
+                      size: 35.0,
                     ),
                   ),
                 ),
@@ -269,16 +305,37 @@ class ImageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      alignment: Alignment.center,
-      child: FutureBuilder<File>(
-        future: imageFile,
-        builder: (_, snapshot) {
-          final file = snapshot.data;
-          if (file == null) return Container();
-          return Image.file(file);
-        },
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: HomeScreen().iconBackgroundColour,
+        elevation: 0.0,
+        title: Center(
+          child: Text(
+            'Image View',
+            style: TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.w500,
+              color: HomeScreen().textAndIconColour,
+            ),
+          ),
+        ),
+      ),
+      body: Container(
+        color: Colors.black,
+        alignment: Alignment.center,
+        child: FutureBuilder<File>(
+          future: imageFile,
+          builder: (_, snapshot) {
+            final file = snapshot.data;
+            if (file == null) return Container();
+            return GestureDetector(
+              child: Image.file(file),
+              onDoubleTap: () {
+                debugPrint("Image Double Tapped");
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -324,6 +381,20 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: HomeScreen().iconBackgroundColour,
+        shadowColor: HomeScreen().textAndIconColour,
+        centerTitle: true,
+        title: Text(
+          'Video Player',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w500,
+            color: HomeScreen().textAndIconColour,
+          ),
+        ),
+        elevation: 0.0,
+      ),
       body: initialized
           // If the video is initialized, display it
           ? Scaffold(
@@ -334,25 +405,33 @@ class _VideoScreenState extends State<VideoScreen> {
                   child: VideoPlayer(_controller),
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  // Wrap the play or pause in a call to `setState`. This ensures the
-                  // correct icon is shown.
-                  setState(() {
-                    // If the video is playing, pause it.
-                    if (_controller.value.isPlaying) {
-                      _controller.pause();
-                    } else {
-                      // If the video is paused, play it.
-                      _controller.play();
-                    }
-                  });
-                },
-                // Display the correct icon depending on the state of the player.
-                child: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+              floatingActionButton: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: FloatingActionButton(
+                  backgroundColor: HomeScreen().iconBackgroundColour,
+                  splashColor: HomeScreen().textAndIconColour,
+                  elevation: 10.0,
+                  onPressed: () {
+                    setState(() {
+                      if (_controller.value.isPlaying) {
+                        _controller.pause();
+                      } else {
+                        _controller.play();
+                      }
+                    });
+                  },
+                  // Display the correct icon depending on the state of the player.
+                  child: Icon(
+                    _controller.value.isPlaying
+                        ? Icons.pause
+                        : Icons.play_arrow,
+                    color: HomeScreen().textAndIconColour,
+                    size: 30.0,
+                  ),
                 ),
               ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
             )
           // If the video is not yet initialized, display a spinner
           : Center(child: CircularProgressIndicator()),
