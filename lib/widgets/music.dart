@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:thender/main.dart';
-import 'package:thender/widgets/gallery.dart';
 import 'package:thender/widgets/share_screen.dart';
 
 class Music extends StatefulWidget {

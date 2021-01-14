@@ -5,7 +5,6 @@ import 'package:thender/main.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_player/video_player.dart';
 
-
 class Gallery extends StatefulWidget {
   @override
   _GalleryState createState() => _GalleryState();

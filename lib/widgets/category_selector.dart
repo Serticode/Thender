@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:thender/main.dart';
-import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'gallery.dart';
 import 'music.dart';
 

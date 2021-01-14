@@ -7,27 +7,26 @@ class ShareHomePage extends StatefulWidget {
 }
 
 class _ShareHomePageState extends State<ShareHomePage> {
-  var homeScreen = HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: homeScreen.iconBackgroundColour,
-        shadowColor: homeScreen.textAndIconColour,
+        backgroundColor: HomeScreen().iconBackgroundColour,
+        shadowColor: HomeScreen().textAndIconColour,
         centerTitle: true,
         title: Text(
           'Thender',
           style: TextStyle(
             fontSize: 30.0,
             fontWeight: FontWeight.w500,
-            color: homeScreen.textAndIconColour,
+            color: HomeScreen().textAndIconColour,
           ),
         ),
         elevation: 0.0,
       ),
       body: SizedBox.expand(
         child: Container(
-          color: homeScreen.otherItemsColour,
+          color: HomeScreen().otherItemsColour,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
@@ -38,7 +37,7 @@ class _ShareHomePageState extends State<ShareHomePage> {
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
-                      color: homeScreen.iconBackgroundColour,
+                      color: HomeScreen().iconBackgroundColour,
                     ),
                   ),
                 ),
