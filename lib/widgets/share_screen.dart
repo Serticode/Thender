@@ -30,13 +30,19 @@ class _ShareHomePageState extends State<ShareHomePage> {
           color: homeScreen.otherItemsColour,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Center(
-              child: Text("Hello World Here's The Share Screen",
-              style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.w700,
-                color: homeScreen.iconBackgroundColour,
-              ),),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    "Hello World Here's The Share Screen",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w700,
+                      color: homeScreen.iconBackgroundColour,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
