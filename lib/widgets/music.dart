@@ -53,11 +53,14 @@ class _MusicState extends State<Music> {
           padding: EdgeInsets.all(0),
           child: ListTile(
             leading: CircleAvatar(
-              child: Icon(Icons.play_arrow),
-              radius: 20.0,
+              radius: 30.0,
               backgroundColor: HomeScreen().iconBackgroundColour,
-              foregroundColor: HomeScreen().textAndIconColour,
-            ),
+              child: CircleAvatar(
+                radius: 25.0,
+                backgroundImage: AssetImage("${songsList.elementAt(index).albumArtwork}"),
+                //backgroundColor: HomeScreen().textAndIconColour,
+              )
+              ),
             title: GestureDetector(
               child: Text(
                 songsList[index].title,

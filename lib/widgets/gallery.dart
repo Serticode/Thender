@@ -127,14 +127,12 @@ class ImageScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: HomeScreen().iconBackgroundColour,
         elevation: 0.0,
-        title: Center(
-          child: Text(
-            'Image View',
-            style: TextStyle(
-              fontSize: 25.0,
-              fontWeight: FontWeight.w500,
-              color: HomeScreen().textAndIconColour,
-            ),
+        title: Text(
+          'Image View',
+          style: TextStyle(
+            fontSize: 30.0,
+            fontWeight: FontWeight.w500,
+            color: HomeScreen().textAndIconColour,
           ),
         ),
       ),

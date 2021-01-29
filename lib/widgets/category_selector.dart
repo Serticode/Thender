@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:thender/main.dart';
+import 'files.dart';
 import 'gallery.dart';
 import 'music.dart';
+import 'apps.dart';
+import 'package:flutter/material.dart';
+import 'package:thender/main.dart';
 
 class CategorySelector extends StatefulWidget {
   @override
@@ -62,7 +64,13 @@ class _CategorySelectorState extends State<CategorySelector> {
         ),
         Expanded(
           child: Container(
-            color: HomeScreen().otherItemsColour,
+            decoration: BoxDecoration(
+              color: HomeScreen().otherItemsColour,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.0),
+                topRight: Radius.circular(40.0),
+              ),
+            ),
             child: getView(selectedIndex),
           ),
         ),
@@ -92,55 +100,7 @@ class _CategorySelectorState extends State<CategorySelector> {
   }
 
   Widget getGallery() => Gallery();
-
   Widget getMusic() => Music();
-
-  List<String> getListElements() {
-    var items = List<String>.generate(1000, (counter) => "Item $counter");
-    return items;
-  }
-
-  Widget getFilesView() {
-    var listItems = getListElements();
-
-    var listView = ListView.builder(itemBuilder: (context, index) {
-      return ListTile(
-        leading: CircleAvatar(
-          child: Icon(Icons.file_copy_rounded),
-          radius: 25.0,
-          backgroundColor: HomeScreen().iconBackgroundColour,
-          foregroundColor: HomeScreen().textAndIconColour,
-        ),
-        title: Text(listItems[index]),
-        subtitle: Text("Random Place Holder: Files"),
-        trailing: Icon(
-          Icons.delete,
-          color: HomeScreen().iconBackgroundColour,
-        ),
-      );
-    });
-    return listView;
-  }
-
-  Widget getAppsView() {
-    var listItems = getListElements();
-
-    var listView = ListView.builder(itemBuilder: (context, index) {
-      return ListTile(
-        leading: CircleAvatar(
-          child: Icon(Icons.apps_sharp),
-          radius: 25.0,
-          backgroundColor: HomeScreen().iconBackgroundColour,
-          foregroundColor: HomeScreen().textAndIconColour,
-        ),
-        title: Text(listItems[index]),
-        subtitle: Text("Random Place Holder: Apps"),
-        trailing: Icon(
-          Icons.delete,
-          color: HomeScreen().iconBackgroundColour,
-        ),
-      );
-    });
-    return listView;
-  }
+  Widget getFilesView() => Files();
+  Widget getAppsView() => Files();
 }

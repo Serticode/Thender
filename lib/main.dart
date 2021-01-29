@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thender/widgets/category_selector.dart';
 import 'package:thender/widgets/share_screen.dart';
+import 'package:thender/widgets/sideBar.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,11 +30,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: SideBar(),
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         backgroundColor: iconBackgroundColour,
         shadowColor: textAndIconColour,
-        centerTitle: true,
+        centerTitle: false,
         title: Text(
           'Thender',
           style: TextStyle(
